@@ -1,0 +1,9 @@
+{
+  "entryPoints": ["src/**"],
+  "out": "docs",
+  "exclude": ["**/*.spec.ts", "**/node_modules/**"],
+  "excludeExternals": true,
+  "includeVersion": true,
+  "readme": "README.md",
+  "hideGenerator": true
+}
