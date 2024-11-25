@@ -12,9 +12,7 @@ export class BillBridgeService {
 
   create(payload: OrderDTO) {}
 
-  async processOrder(
-    payload: ProcessOrderPayloadDTO,
-  ): Promise<OrderElementDTO[]> {
+  async processOrder(payload: ProcessOrderPayloadDTO): Promise<OrderDTO> {
     const { frequency, pageSize, pageNumber } = payload;
     const { data } = await firstValueFrom(
       this.httpService
@@ -31,8 +29,10 @@ export class BillBridgeService {
           }),
         ),
     );
-    return data.orders.filter(
+    const filteredOrders = data.orders.filter(
       (element: OrderElementDTO) => element.billingFrequency === frequency,
     );
+
+    return { orders: filteredOrders };
   }
 }
