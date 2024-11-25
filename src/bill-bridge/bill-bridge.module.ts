@@ -3,6 +3,11 @@ import { HttpModule } from '@nestjs/axios';
 import { BillBridgeService } from './bill-bridge.service';
 import { BillBridgeController } from './bill-bridge.controller';
 
+/**
+ * Module that handles billing operations, including creating and retrieving billing data.
+ *
+ * Imports the HttpModule with a pre-configured base URL for interacting with external services.
+ */
 @Module({
   imports: [
     HttpModule.register({
