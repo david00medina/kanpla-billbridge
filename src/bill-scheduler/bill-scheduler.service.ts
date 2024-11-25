@@ -14,12 +14,13 @@ export class BillSchedulerService {
 
   constructor(private readonly billBridgeService: BillBridgeService) {}
 
+
   /**
    * Executes the daily billing routine every day at midnight.
    *
-   * @cron-expression `* * * * * *` - Runs every second for demonstration purposes. (Should be adjusted to `0 0 * * *` for midnight)
+   * @cron-expression `0 0 * * * *` - Runs every second for demonstration purposes. (Should be adjusted to `0 0 * * *` for midnight)
    */
-  @Cron('* * * * * *', {
+  @Cron('0 0 * * * *', {
     name: 'Every day at midnight scheduler',
   })
   async everyDayMidnight() {
@@ -59,8 +60,6 @@ export class BillSchedulerService {
     name: 'Every first day of the year scheduler',
   })
   async EveryYearMidnight() {
-    await this.executeBillRoutine('daily');
-    await this.executeBillRoutine('weekly');
     await this.executeBillRoutine('monthly');
   }
 
@@ -81,6 +80,8 @@ export class BillSchedulerService {
 
       // Paginate and retrieve orders based on the given frequency
       while (!isEnd) {
+        // Extract the orders by frequency
+        // TODO: Add a retry logic when service is unavailable
         const pagedOrderList: OrderDTO =
           await this.billBridgeService.processOrder({
             frequency: frequency,
@@ -101,7 +102,8 @@ export class BillSchedulerService {
 
       this.logger.debug(`Ending page ${pageNumber}`);
 
-      // Generate the bills based on the retrieved orders
+      // Generate the bills based in the order frequency
+      // TODO: Add a retry logic when service is unavailable
       const res = await this.billBridgeService.createBill({ orders });
       this.logger.debug(res);
     } catch (error) {
