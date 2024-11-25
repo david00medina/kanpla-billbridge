@@ -12,5 +12,6 @@ import { BillBridgeController } from './bill-bridge.controller';
   ],
   controllers: [BillBridgeController],
   providers: [BillBridgeService],
+  exports: [BillBridgeService],
 })
 export class BillBridgeModule {}

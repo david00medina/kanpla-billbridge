@@ -10,7 +10,7 @@ export class BillBridgeController {
 
   @Post()
   async createBillings(@Body() payload: OrderDTO): Promise<BillingDTO> {
-    return await this.billBridgeService.create(payload);
+    return await this.billBridgeService.createBill(payload);
   }
 
   @Get()
