@@ -11,7 +11,7 @@ export class BillBridgeService {
   private readonly logger = new Logger(BillBridgeService.name);
   constructor(private readonly httpService: HttpService) {}
 
-  async create(payload: OrderDTO): Promise<BillingDTO> {
+  async createBill(payload: OrderDTO): Promise<BillingDTO> {
     try {
       const response = await firstValueFrom(
         this.httpService.post<BillingDTO>('/api/service-b', payload),
