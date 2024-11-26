@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ProcessOrderPayloadDTO } from './dtos/process-order-payload.dto';
+import { FrequencyEnum, ProcessOrderPayloadDTO } from './dtos/process-order-payload.dto';
 import { OrderDTO } from './dtos/order.dto';
 import { BillBridgeService } from './bill-bridge.service';
 import { BillingDTO } from './dtos/billing.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 /**
  * Controller that handles endpoints for billing operations.
@@ -55,6 +55,19 @@ export class BillBridgeController {
     status: 200,
     description: 'Found orders by frequency',
     type: OrderDTO,
+  })
+  @ApiQuery({
+    name: 'frequency',
+    enum: FrequencyEnum,
+    type: String,
+  })
+  @ApiQuery({
+    name: 'pageNumber',
+    type: Number,
+  })
+  @ApiQuery({
+    name: 'pageSize',
+    type: Number,
   })
   async getBillings(
     @Query() payload: ProcessOrderPayloadDTO,

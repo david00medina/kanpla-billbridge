@@ -27,6 +27,7 @@ export class BillingDTO {
         },
       ],
     },
+    type: [BillingElementDTO],
   })
   @IsArray()
   @ValidateNested({ each: true })

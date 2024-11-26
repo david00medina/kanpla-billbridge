@@ -4,7 +4,7 @@ import { Type } from 'class-transformer';
 /**
  * Enum representing the available billing frequencies.
  */
-enum FrequencyEnum {
+export enum FrequencyEnum {
   DAILY = 'daily',
   WEEKLY = 'weekly',
   MONTHLY = 'monthly',
