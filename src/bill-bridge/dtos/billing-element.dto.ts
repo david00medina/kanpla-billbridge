@@ -1,4 +1,5 @@
 import { IsDate, IsInt, IsOptional, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * Represents a single billing element containing details about an individual billing item.
@@ -10,6 +11,10 @@ export class BillingElementDTO {
    * @type {number}
    * @example 1
    */
+  @ApiProperty({
+    description: 'Billing ID',
+    example: 0,
+  })
   @IsInt()
   id: number;
 
@@ -19,6 +24,10 @@ export class BillingElementDTO {
    * @type {string}
    * @example "Monthly Subscription"
    */
+  @ApiProperty({
+    description: 'Item',
+    example: 'Still water',
+  })
   @IsString()
   item: string;
 
@@ -28,6 +37,10 @@ export class BillingElementDTO {
    * @type {string}
    * @example "John Doe"
    */
+  @ApiProperty({
+    description: 'Customer',
+    example: 'John REQUENA',
+  })
   @IsString()
   customer: string;
 
@@ -38,6 +51,10 @@ export class BillingElementDTO {
    * @example "SUB123456"
    * @optional
    */
+  @ApiProperty({
+    description: 'Submitted ID',
+    example: '1cd3408a-15ab-4ac6-8757-cad1ce8036f2',
+  })
   @IsString()
   @IsOptional()
   submittedId: string;
@@ -49,6 +66,10 @@ export class BillingElementDTO {
    * @example "2024-11-25T12:00:00Z"
    * @optional
    */
+  @ApiProperty({
+    description: 'Submitted at',
+    example: '2024-11-26T10:59:52.575Z',
+  })
   @IsDate()
   @IsOptional()
   submittedAt: string;

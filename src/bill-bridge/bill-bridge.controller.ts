@@ -3,6 +3,7 @@ import { ProcessOrderPayloadDTO } from './dtos/process-order-payload.dto';
 import { OrderDTO } from './dtos/order.dto';
 import { BillBridgeService } from './bill-bridge.service';
 import { BillingDTO } from './dtos/billing.dto';
+import { ApiResponse } from '@nestjs/swagger';
 
 /**
  * Controller that handles endpoints for billing operations.
@@ -31,6 +32,11 @@ export class BillBridgeController {
    * }
    */
   @Post()
+  @ApiResponse({
+    status: 200,
+    description: 'New billings',
+    type: BillingDTO,
+  })
   async createBillings(@Body() payload: OrderDTO): Promise<BillingDTO> {
     return await this.billBridgeService.createBill(payload);
   }
@@ -45,6 +51,11 @@ export class BillBridgeController {
    * GET /bill-bridge?frequency=daily&pageNumber=1&pageSize=10
    */
   @Get()
+  @ApiResponse({
+    status: 200,
+    description: 'Found orders by frequency',
+    type: OrderDTO,
+  })
   async getBillings(
     @Query() payload: ProcessOrderPayloadDTO,
   ): Promise<OrderDTO> {

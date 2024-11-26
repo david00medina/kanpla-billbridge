@@ -1,4 +1,5 @@
 import { IsInt, IsOptional, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * Represents a single order element containing details about an order.
@@ -10,6 +11,10 @@ export class OrderElementDTO {
    * @type {number}
    * @example 101
    */
+  @ApiProperty({
+    description: 'Order ID',
+    example: 1,
+  })
   @IsInt()
   id: number;
 
@@ -19,6 +24,10 @@ export class OrderElementDTO {
    * @type {string}
    * @example "Bottled Water"
    */
+  @ApiProperty({
+    description: 'Item',
+    example: 'Banana',
+  })
   @IsString()
   item: string;
 
@@ -28,6 +37,10 @@ export class OrderElementDTO {
    * @type {string}
    * @example "Jane Doe"
    */
+  @ApiProperty({
+    description: 'Customer',
+    example: 'Alice Brown',
+  })
   @IsString()
   customer: string;
 
@@ -38,6 +51,10 @@ export class OrderElementDTO {
    * @example "monthly"
    * @optional
    */
+  @ApiProperty({
+    description: 'Billing frequency',
+    example: 'monthly',
+  })
   @IsString()
   @IsOptional()
   billingFrequency: string;
