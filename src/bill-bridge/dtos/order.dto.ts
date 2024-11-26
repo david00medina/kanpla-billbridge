@@ -26,6 +26,7 @@ export class OrderDTO {
         },
       ],
     },
+    type: [OrderElementDTO],
   })
   @IsArray()
   @ValidateNested({ each: true })
